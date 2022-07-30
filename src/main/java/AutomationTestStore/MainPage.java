@@ -15,14 +15,4 @@ public class MainPage {
     public final ElementsCollection pricesAfterDiscount = $$(".pricenew");
     public final ElementsCollection itemsNames = $$(".prdocutname");
     public final SelenideElement itemName = $(".prdocutname");
-
-//    public void findProductInTheProductsList(String productName){
-//        itemsNames.findBy(Condition.attribute(productName));
-//    }
-//
-////    public MainPage listOfProducts(String product){
-////        for(String product){
-////            System.out.println($$(".prdocutname").shouldHave(texts(product)));
-////        }
-////    }
 }

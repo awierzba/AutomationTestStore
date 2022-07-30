@@ -4,9 +4,9 @@ import AutomationTestStore.CartPage;
 import AutomationTestStore.MainPage;
 import AutomationTestStore.TextReportLog;
 import AutomationTestStore.checkout.CheckoutLoginPage;
+import AutomationTestStore.checkout.GuestCheckoutPage;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -20,7 +20,7 @@ public class CheckoutTest implements TextReportLog {
             Selenide.page(CartPage.class);
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
         Configuration.holdBrowserOpen = true;
         Selenide.open(Configuration.baseUrl);
         mainPage.itemsNames
@@ -37,25 +37,25 @@ public class CheckoutTest implements TextReportLog {
     }
 
     @AfterEach
-    public void cleanup(){
+    public void cleanup() {
         Selenide.clearBrowserLocalStorage();
     }
 
     @Test
-    public void continueButtonShouldBeVisible(){
+    public void continueButtonShouldBeVisible() {
         //then
         checkoutLoginPage.continueButton.shouldBe(visible);
     }
 
     @Test
-    public void shouldBeAbleToLoginAsGuest(){
+    public void shouldBeAbleToLoginAsGuest() {
         //given
+        final GuestCheckoutPage guestCheckoutPage = Selenide.page(GuestCheckoutPage.class);
         //when
         checkoutLoginPage.guestLoginButton.click();
         checkoutLoginPage.continueButton.click();
         //then
-        checkoutLoginPage.guestLoginButton.shouldBe(visible);
+        guestCheckoutPage.guestCheckoutContinueButton.shouldBe(visible);
     }
-
 
 }
